@@ -1,0 +1,18 @@
+package com.coupondunia;
+
+import android.app.ActionBar.Tab;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.app.ActionBar;
+ 
+public class TabListener implements ActionBar.TabListener {
+ 
+	Fragment fragment;
+ 
+	public TabListener(Fragment fragment) {
+		// TODO Auto-generated constructor stub
+		this.fragment = fragment;
+	}
+ 
+
+}

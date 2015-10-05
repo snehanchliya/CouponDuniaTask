@@ -1,0 +1,15 @@
+
+package com.coupondunia.model;
+
+import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+@Generated("org.jsonschema2pojo")
+public class Data {
+
+    @SerializedName("0")
+    @Expose
+    private com.coupondunia.model._0 _0;
+}
+}

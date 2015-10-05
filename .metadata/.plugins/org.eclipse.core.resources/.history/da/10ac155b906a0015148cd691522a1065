@@ -1,0 +1,92 @@
+package com.coupondunia.adapter;
+
+import java.util.List;
+
+
+
+import com.coupondunia.R;
+import com.coupondunia.model.Category;
+import com.coupondunia.model.Data;
+import com.coupondunia.model.Offers;
+import com.squareup.picasso.Picasso;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class NearByAdapter extends BaseAdapter {
+
+	Context context;
+	List<Data> offers;
+	private ViewHolder viewHolder;
+	
+	
+	public class ViewHolder{
+		ImageView logo;
+		TextView outletName,totalOffers,categories,distanceAndLocation;
+	}
+	public NearByAdapter(Context context, List<Data> offers) {
+		this.context = context;
+		this.offers = offers;
+		
+	}
+
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return offers.size();
+	}
+
+	@Override
+	public Object getItem(int arg0) {
+		// TODO Auto-generated method stub
+		return offers.get(arg0);
+	}
+
+	@Override
+	public long getItemId(int arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public View getView(int arg0, View arg1, ViewGroup arg2) {
+		// TODO Auto-generated method stub
+
+		View view = arg1;
+		Data offer=	offers.get(arg0);
+		if (view == null) {
+			LayoutInflater inflator = (LayoutInflater) context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+			viewHolder=new ViewHolder();
+			view = inflator.inflate(R.layout.nearby_fragment, arg2, false);
+			viewHolder.logo=(ImageView)view.findViewById(R.id.logo);
+			viewHolder.outletName=(TextView) view.findViewById(R.id.outletName);
+			viewHolder.totalOffers=(TextView) view.findViewById(R.id.totalOffers);
+			viewHolder.categories=(TextView) view.findViewById(R.id.categories);
+			viewHolder.distanceAndLocation=(TextView) view.findViewById(R.id.distanceAndLocation);
+			view.setTag(viewHolder);
+		} else {
+			viewHolder=(ViewHolder)view.getTag();
+		}
+		
+		Picasso.with(context).load(offer.getLogoURL()).into(viewHolder.logo);
+		
+		
+		viewHolder.outletName.setText(offer.getOutletName());
+		viewHolder.totalOffers.setText(offer.getOutletName());
+		for(Category category:offer.getCategories())
+		viewHolder.categories.append(category.getName()+" ");		
+		viewHolder.distanceAndLocation.setText(offer.getDistance()+" "+offer.getCityName());
+		
+		return view;
+
+	}
+
+}

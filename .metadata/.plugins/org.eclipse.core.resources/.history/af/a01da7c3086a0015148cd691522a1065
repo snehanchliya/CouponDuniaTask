@@ -1,0 +1,12 @@
+package com.coupondunia.utilities;
+
+import android.location.LocationManager;
+
+public class LocationUtility extends LocationManager {
+
+	LocationUtility() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+}

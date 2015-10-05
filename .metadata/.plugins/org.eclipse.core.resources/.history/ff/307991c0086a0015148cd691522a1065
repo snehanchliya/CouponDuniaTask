@@ -1,0 +1,7 @@
+package com.coupondunia.utilities;
+
+import android.location.LocationManager;
+
+public class LocationUtility extends LocationManager {
+
+}

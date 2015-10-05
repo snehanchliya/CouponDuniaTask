@@ -1,0 +1,140 @@
+package com.coupondunia;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import com.coupondunia.adapter.NearByAdapter;
+import com.coupondunia.model.Data;
+import com.coupondunia.utilities.GPSTracker;
+import com.coupondunia.utilities.ServerConnection;
+import com.coupondunia.utilities.ServerConnection.OffersInterface;
+
+import android.content.Context;
+import android.location.Address;
+import android.location.Location;
+import android.os.Bundle;
+import android.support.v4.app.ListFragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.ViewGroup.MarginLayoutParams;
+import android.widget.ListView;
+import android.widget.TextView;
+
+public class NearByFragment extends ListFragment implements OffersInterface {
+	double latitude, longitude;
+	static final Location origin = new Location("Source");
+	GPSTracker gps;
+
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+	}
+
+	public static NearByFragment newInstance() {
+		NearByFragment fragment = new NearByFragment();
+		return fragment;
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		
+		getOffers();
+		
+		/*
+		 * testComparator();
+		 * 
+		 * gps = new GPSTracker(getActivity()); if (gps.canGetLocation()) { //
+		 * gps enabled} // return boolean true/false latitude =
+		 * gps.getLatitude(); longitude = gps.getLongitude();
+		 * origin.setLatitude(latitude); origin.setLongitude(longitude);
+		 * getOffers(); } else { gps.showSettingsAlert(); }
+		 */
+
+		return super.onCreateView(inflater, container, savedInstanceState);
+
+	}
+
+	private void getOffers() {
+
+		ServerConnection sc = new ServerConnection(getActivity());
+		sc.getOffersFromServer();
+		sc.setOffersListener(this);
+	}
+
+	@Override
+	public void getOffers(List<Data> offers, Address address) {
+		// TODO Auto-generated method stub
+
+		if (address != null) {
+			String subLocality = address.getSubLocality();
+			
+			LayoutInflater inflater= (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			View headerView=inflater.inflate(R.layout.header, null, false);
+			TextView currentLocation=(TextView)headerView.findViewById(R.id.locationName);
+			if (subLocality == null || subLocality.length() < 1) {
+				currentLocation.setText("Not Available");
+			} else {
+				currentLocation.setText(subLocality);
+			}
+
+			this.getListView().addHeaderView(currentLocation);
+
+		}
+
+		Collections.sort(offers, new DistanceComparator());
+		ListView restaurantListView= getListView();
+		restaurantListView.setDividerHeight(10);
+		
+		/*
+		 * MarginLayoutParams param=(MarginLayoutParams)
+		 * restaurantListView.getLayoutParams(); param.leftMargin=10;
+		 * param.rightMargin=10; restaurantListView.setLayoutParams(param);
+		 */
+		
+		setListAdapter(new NearByAdapter(getActivity(), offers));
+	}
+
+	private void mockComparator() {
+		List<Data> data = new ArrayList<Data>();
+		Data d = new Data();
+		d.setDistance((double) 258);
+		data.add(d);
+		d = new Data();
+		d.setDistance((double) 225);
+		data.add(d);
+		d = new Data();
+		d.setDistance((double) 275);
+		data.add(d);
+		d = new Data();
+		d.setDistance((double) 201);
+		data.add(d);
+		d = new Data();
+		d.setDistance((double) 205);
+		data.add(d);
+		d = new Data();
+		d.setDistance((double) 245);
+		data.add(d);
+		d = new Data();
+
+		Collections.sort(data, new DistanceComparator());
+
+		Log.i("Collection", String.valueOf(data.size()));
+	}
+
+	public class DistanceComparator implements Comparator<Data> {
+
+		@Override
+		public int compare(Data o1, Data o2) {
+			return o1.getDistance().compareTo(o2.getDistance());
+		}
+
+	}
+}

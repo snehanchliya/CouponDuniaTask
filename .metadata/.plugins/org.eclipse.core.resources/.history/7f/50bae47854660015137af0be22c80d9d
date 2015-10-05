@@ -1,0 +1,31 @@
+
+package com.coupondunia.model;
+
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class Data {
+
+    @SerializedName("OutletName")
+    @Expose
+    private String OutletName;
+    
+    @SerializedName("BrandName")
+    @Expose
+    private String BrandName;
+
+    @SerializedName("OutletName")
+    @Expose
+    private String OutletName;
+
+    @SerializedName("OutletName")
+    @Expose
+    private String OutletName;
+
+    @SerializedName("OutletName")
+    @Expose
+    private String OutletName;
+
+}
+
