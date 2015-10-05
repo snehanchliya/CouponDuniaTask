@@ -5,89 +5,35 @@ package com.coupondunia.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class Data {
 
 	private String CurrentLocation;
 	
-	@SerializedName("SubFranchiseID")
-    @Expose
     private String SubFranchiseID;
-    @SerializedName("OutletID")
-    @Expose
     private String OutletID;
-    @SerializedName("OutletName")
-    @Expose
     private String OutletName;
-    @SerializedName("BrandID")
-    @Expose
     private String BrandID;
-    @SerializedName("Address")
-    @Expose
     private String Address;
-    @SerializedName("NeighbourhoodID")
-    @Expose
     private String NeighbourhoodID;
-    @SerializedName("CityID")
-    @Expose
     private String CityID;
-    @SerializedName("Email")
-    @Expose
     private Object Email;
-    @SerializedName("Timings")
-    @Expose
     private String Timings;
-    @SerializedName("CityRank")
-    @Expose
     private Object CityRank;
-    @SerializedName("Latitude")
-    @Expose
     private String Latitude;
-    @SerializedName("Longitude")
-    @Expose
     private String Longitude;
-    @SerializedName("Pincode")
-    @Expose
     private Object Pincode;
-    @SerializedName("Landmark")
-    @Expose
     private Object Landmark;
-    @SerializedName("Streetname")
-    @Expose
     private Object Streetname;
-    @SerializedName("BrandName")
-    @Expose
     private String BrandName;
-    @SerializedName("OutletURL")
-    @Expose
     private String OutletURL;
-    @SerializedName("NumCoupons")
-    @Expose
     private Integer NumCoupons;
-    @SerializedName("NeighbourhoodName")
-    @Expose
     private String NeighbourhoodName;
-    @SerializedName("PhoneNumber")
-    @Expose
     private String PhoneNumber;
-    @SerializedName("CityName")
-    @Expose
     private String CityName;
-    @SerializedName("Distance")
-    @Expose
     private Double Distance;
-    @SerializedName("Categories")
-    @Expose
     private List<Category> Categories=new ArrayList<Category>();
-    @SerializedName("LogoURL")
-    @Expose
     private String LogoURL;
-    @SerializedName("CoverURL")
-    @Expose
-    private String CoverURL;
-    
+    private String CoverURL;    
     private String categoriesString;
 
     /**

@@ -75,7 +75,7 @@ public class NearByAdapter extends BaseAdapter {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 			viewHolder=new ViewHolder();
-			view = inflator.inflate(R.layout.nearby_fragment, arg2, false);
+			view = inflator.inflate(R.layout.nearby_fragment_adapter, arg2, false);
 			viewHolder.logo=(ImageView)view.findViewById(R.id.logo);
 			viewHolder.outletName=(TextView) view.findViewById(R.id.outletName);
 			viewHolder.totalOffers=(TextView) view.findViewById(R.id.totalOffers);

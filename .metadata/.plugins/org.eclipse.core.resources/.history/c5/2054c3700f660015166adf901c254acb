@@ -1,7 +1,0 @@
-package com.coupondunia.model;
-
-public class Categories {
-
-	int OfflineCategoryID;
-	String Name;
-}

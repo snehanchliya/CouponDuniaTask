@@ -4,13 +4,19 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
+import android.app.ActionBar.LayoutParams;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 
 public class RestaurantActivity extends ActionBarActivity{
@@ -23,12 +29,14 @@ public class RestaurantActivity extends ActionBarActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+					
 		setContentView(R.layout.activity_restaurant);
-
+		
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+				
 		actionBar.setDisplayShowHomeEnabled(true);
 		
 		actionBar.setDisplayShowTitleEnabled(true);
@@ -36,10 +44,9 @@ public class RestaurantActivity extends ActionBarActivity{
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 		actionBar.setHomeButtonEnabled(true);
-		
+
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		
-		
+				
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
 

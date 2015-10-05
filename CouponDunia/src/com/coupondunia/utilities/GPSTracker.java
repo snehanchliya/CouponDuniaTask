@@ -1,5 +1,7 @@
 package com.coupondunia.utilities;
 
+
+
 import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
@@ -167,6 +169,8 @@ public class GPSTracker extends Service implements LocationListener {
   
         // Showing Alert Message
         alertDialog.show();
+        
+        alertDialog.setCancelable(false);
     }
     
     /**

@@ -2,20 +2,10 @@ package com.coupondunia.model;
 
 import java.util.List;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
-
 public class Offers {
 		
-    @SerializedName("status")
-    @Expose
     private Status status;
-    @SerializedName("data")
-    @Expose
     private List<Data> data;
-    @SerializedName("hash")
-    @Expose
     private String hash;
     
     public List<Data> getData() {
